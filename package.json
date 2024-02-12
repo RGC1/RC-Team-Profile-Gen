@@ -1,5 +1,21 @@
 {
+  "name": "rc-team-profile-gen",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^9.2.14"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
