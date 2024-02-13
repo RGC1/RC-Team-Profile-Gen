@@ -116,8 +116,8 @@ function promptMenuTeam() {
             choices: ['Add an Engineer', 'Add an Intern', 'Finish building the team']
         }     
     ])
-    .then((teamOptions) => {
-        switch (teamOptions.teamOptions) {
+    .then((userOptions) => {
+        switch (userOptions.teamOptions) {
             case 'Add an engineer':
                     promptEngineerInfo();
                 break;
