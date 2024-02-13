@@ -1,6 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -12,4 +13,132 @@ const render = require("./src/page-template.js");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
+
+const teamMembers = [];
+
+function promptManagerInfo () {
+        inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Introduce the name of the manager',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Introduce the ID of the manager',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Introduce the email address of the manager',
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'Introduce the office Number for the manager',
+        }
+    ])
+    .then(mngAnswers => {
+        const manager = new Manager(mngAnswers.name, mngAnswers.id, mngAnswers.email, mngAnswers.officeNumber);
+        teamMembers.push(manager);
+        promptMenuTeam();
+    })
+}
+
+function promptEngineerInfo() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Insert your name',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'Insert your ID',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'Insert your email',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'Insert your GitHub username',
+            name: 'github',
+        }
+    ])
+    .then(engAnswers => {
+        const engineer = new Engineer(engAnswers.name, engAnswers.id, engAnswers.email, engAnswers.github);
+        teamMembers.push(engineer);
+        promptMenuTeam();
+    })
+}
+
+function promptInternInfo() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Insert your name',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'Insert your ID',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'Insert your email',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'Insert your scool name',
+            name: 'school',
+        }
+    ])
+    .then(intAnswers => {
+        const intern = new Intern(intAnswers.name, intAnswers.id, intAnswers.email, intAnswers.school);
+        teamMembers.push(intern);
+        promptMenuTeam();
+    })
+}
+
+
+function promptMenuTeam() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name:'teamOptions',
+            message: 'Add/amend a new role, if applicable',
+            choices: ['Add an Engineer', 'Add an Intern', 'Finish building the team']
+        }     
+    ])
+    .then((teamOptions) => {
+        switch (teamOptions.teamOptions) {
+            case 'Add an engineer':
+                    promptEngineerInfo();
+                break;
+            case 'Add an intern':
+                    promptInternInfo();
+                break;
+            case 'Finish building the team':
+                    finishBuildingTeam();
+                break;
+        } 
+    });
+}
+
+//generate html file
+
+function finishBuildingTeam() {
+    fs.writeFile(outputPath, render(teamMembers), (err) => {
+        if (err) throw err;
+        console.log('HTML file for the team has been successfully generated!');
+    });
+}
+
+promptManagerInfo ();
 
