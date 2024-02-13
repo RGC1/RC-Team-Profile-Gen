@@ -36,76 +36,15 @@ function promptManagerInfo () {
         {
             type: 'input',
             name: 'officeNumber',
-            message: 'Introduce the office Number for the manager',
+            message: 'Introduce the office number for the manager',
         }
     ])
     .then(mngAnswers => {
         const manager = new Manager(mngAnswers.name, mngAnswers.id, mngAnswers.email, mngAnswers.officeNumber);
         teamMembers.push(manager);
         promptMenuTeam();
-    })
+    });
 }
-
-function promptEngineerInfo() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Insert your name',
-            name: 'name',
-        },
-        {
-            type: 'input',
-            message: 'Insert your ID',
-            name: 'id',
-        },
-        {
-            type: 'input',
-            message: 'Insert your email',
-            name: 'email',
-        },
-        {
-            type: 'input',
-            message: 'Insert your GitHub username',
-            name: 'github',
-        }
-    ])
-    .then(engAnswers => {
-        const engineer = new Engineer(engAnswers.name, engAnswers.id, engAnswers.email, engAnswers.github);
-        teamMembers.push(engineer);
-        promptMenuTeam();
-    })
-}
-
-function promptInternInfo() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Insert your name',
-            name: 'name',
-        },
-        {
-            type: 'input',
-            message: 'Insert your ID',
-            name: 'id',
-        },
-        {
-            type: 'input',
-            message: 'Insert your email',
-            name: 'email',
-        },
-        {
-            type: 'input',
-            message: 'Insert your scool name',
-            name: 'school',
-        }
-    ])
-    .then(intAnswers => {
-        const intern = new Intern(intAnswers.name, intAnswers.id, intAnswers.email, intAnswers.school);
-        teamMembers.push(intern);
-        promptMenuTeam();
-    })
-}
-
 
 function promptMenuTeam() {
     inquirer.prompt([
@@ -129,6 +68,66 @@ function promptMenuTeam() {
                 break;
         } 
     });
+}
+
+function promptEngineerInfo() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Insert Engineer name',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'Insert Engineer ID',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'Insert Engineer email',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'Insert Engineer GitHub username',
+            name: 'github',
+        }
+    ])
+    .then(engAnswers => {
+        const engineer = new Engineer(engAnswers.name, engAnswers.id, engAnswers.email, engAnswers.github);
+        teamMembers.push(engineer);
+        promptMenuTeam();
+    })
+}
+
+function promptInternInfo() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Insert Intern name',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'Insert Intern ID',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'Insert Intern email',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'Insert Intern scool name',
+            name: 'school',
+        }
+    ])
+    .then(intAnswers => {
+        const intern = new Intern(intAnswers.name, intAnswers.id, intAnswers.email, intAnswers.school);
+        teamMembers.push(intern);
+        promptMenuTeam();
+    })
 }
 
 //generate html file

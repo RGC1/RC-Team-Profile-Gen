@@ -10,6 +10,8 @@ Copy the HTTPS link from GitHub and clone the repository on a local machine (htt
 
 Install Inquirer and Jest 
 
+Application is invoked by using the command in teh terminal: node index.js 
+
 ## Technologies and resources
 
 * Node.js: https://nodejs.org/en
